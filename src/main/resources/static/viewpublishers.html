@@ -1,0 +1,102 @@
+<div ng-controller="publisherController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	<div class="container marketing">
+		<h1>List of Publishers in LMS</h1>
+		<div class="input-group mb-3">
+			 <input type="text" class="form-control" placeholder="Publisher's name" aria-label="Recipient's username" aria-describedby="button-addon2" ng-model="searchString" >
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-primary" type="button" id="button-addon2"  ng-click="searchPublisher()">Search</button>
+			  </div>
+		</div>
+		<div class="col-md-10">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li class="page-item"
+					ng-repeat="n in [] | range: pagination.numPages"
+					ng-class="{active: n == pagination.page}"><a class="page-link"
+					href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.nextPage()">&raquo;</a></li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Publisher Name</th>
+					<th scope="col">Publisher Address</th>
+					<th scope="col">Publisher Phone</th>
+					<th scope="col">Books Published</th>
+					<th scope="col">Edit Publisher</th>
+					<th scope="col">Delete Publisher</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="p in mypublishers | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{$index+1}}</td>
+					<td>{{p.publisherName}}</td>
+					<td>{{p.publisherAddress}}</td>
+					<td>{{p.publisherPhone}}</td>
+					<td><span ng-repeat="b in p.books">{{b.title}}<span
+							ng-if="!$last"> | </span></span></td>
+					<td>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#editPublisherModal" ng-click="editPublisherModal(p)">Edit</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger btn-sm"
+							ng-click="deletePublisher(p.publisherId)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<form>
+			<a role="button" class="btn btn-outline-primary" href="#/createpublisher">Add Publisher</a>
+			<a class="btn btn-danger" href="#/adminservices" role="button">Go
+				Back</a>
+		</form>
+	</div>
+	<div class="modal fade" id="editPublisherModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Publisher</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Enter Publisher Name for new
+							Publisher: </label> <input type="text" class="form-control"
+							placeholder="Enter Publisher Name" ng-model="publisher.publisherName" value="publisher.publisherName"> 
+							<label for="exampleInputEmail1">Enter Publisher Address for new
+							Publisher: </label> <input type="text" class="form-control"
+							placeholder="Enter Publisher Address" ng-model="publisher.publisherAddress" value="publisher.publisherAddress">
+							<label for="exampleInputEmail1">Enter Publisher Phone for new
+							Publisher: </label> <input type="text" class="form-control"
+							placeholder="Enter Publisher Phone" ng-model="publisher.publisherPhone" value="publisher.publisherPhone">
+<!-- 							<label for="mySelect">Select Books:</label> -->
+<!-- 							<select name="mySelect" id="mySelect"  class="form-control"  multiple   -->
+<!-- 						      ng-options="b.title for b in mybooks" -->
+<!-- 						      ng-model="publisher.books"></select> -->
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="updatePublisher(publisher)" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

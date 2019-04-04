@@ -1,0 +1,25 @@
+<div ng-controller="authorController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	
+<div class="container marketing">
+
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Author Name for new
+				Author: </label> <input type="text" class="form-control"
+				placeholder="Enter Author Name" ng-model="authorName">
+				<label for="mySelect">Select Books:</label>
+				<select name="mySelect" id="mySelect"  multiple class="form-control"  
+			      ng-options="b.title for b in mybooks"
+			      ng-model="authorBooks"></select>
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-sm" ng-click="addauthor()">Submit</button>
+		<button type="button" class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+	</div>
+</div>

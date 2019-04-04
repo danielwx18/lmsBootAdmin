@@ -1,0 +1,93 @@
+<div ng-controller="genreController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	<div class="container marketing">
+		<h1>List of Genres in LMS</h1>
+		<div class="input-group mb-3">
+			 <input type="text" class="form-control" placeholder="Genre's name" aria-label="Recipient's username" aria-describedby="button-addon2" ng-model="searchString" >
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-primary" type="button" id="button-addon2"  ng-click="searchGenre()">Search</button>
+			  </div>
+		</div>
+		<div class="col-md-10">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li class="page-item"
+					ng-repeat="n in [] | range: pagination.numPages"
+					ng-class="{active: n == pagination.page}"><a class="page-link"
+					href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.nextPage()">&raquo;</a></li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Genre Name</th>
+					<th scope="col">Categorical Books</th>
+					<th scope="col">Edit Genre</th>
+					<th scope="col">Delete Genre</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="g in mygenres | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{$index+1}}</td>
+					<td>{{g.genre_name}}</td>
+					<td><span ng-repeat="b in g.books">{{b.title}}<span
+							ng-if="!$last"> | </span></span></td>
+					<td>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#editGenreModal" ng-click="editGenreModal(g)">Edit</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger btn-sm"
+							ng-click="deleteGenre(g.genre_id)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<form>
+			<a role="button" class="btn btn-outline-primary" href="#/creategenre">Add Genre</a>
+			<a class="btn btn-danger" href="#/adminservices" role="button">Go
+				Back</a>
+		</form>
+	</div>
+	<div class="modal fade" id="editGenreModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Genre</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Enter Genre Name to be edited: </label> 
+							<input type="text" class="form-control"
+								placeholder="Enter Genre Name" ng-model="genre.genreName"
+							value="genre.genreName">
+							<label for="mySelect">Re-select Books:</label>
+							<select name="mySelect" id="mySelect" multiple class="form-control"  
+							      ng-options="b.title for b in mybooks"
+							      ng-model="genre.books"></select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="updateGenre(genre)" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

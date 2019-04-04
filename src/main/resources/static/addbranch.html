@@ -1,0 +1,24 @@
+<div ng-controller="branchController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	
+<div class="container marketing">
+
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Branch Name for new
+				Branch: </label> <input type="text" class="form-control"
+				placeholder="Enter Branch Name" ng-model="branchName">
+				<label for="exampleInputEmail1">Enter Branch Address for new
+				Branch: </label> <input type="text" class="form-control"
+				placeholder="Enter Branch Address" ng-model="branchAddress">
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-sm" ng-click="addbranch()">Submit</button>
+		<button type="button" class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+	</div>
+</div>

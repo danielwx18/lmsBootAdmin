@@ -1,0 +1,27 @@
+<div ng-controller="borrowerController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	
+<div class="container marketing">
+
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Borrower Name for new
+				Borrower: </label> <input type="text" class="form-control"
+				placeholder="Enter Borrower Name" ng-model="borrowerName">
+				<label for="exampleInputEmail1">Enter Borrower Address for new
+				Borrower: </label> <input type="text" class="form-control"
+				placeholder="Enter Borrower Address" ng-model="borrowerAddress">
+				<label for="exampleInputEmail1">Enter Borrower Phone for new
+				Borrower: </label> <input type="text" class="form-control"
+				placeholder="Enter Borrower Phone" ng-model="borrowerPhone">
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-sm" ng-click="addborrower()">Submit</button>
+		<button type="button" class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+	</div>
+</div>

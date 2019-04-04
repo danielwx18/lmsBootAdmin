@@ -1,0 +1,90 @@
+<div ng-controller="loansController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	<div class="container marketing">
+		<h1>List of BookLoans in LMS</h1>
+		<div class="input-group mb-3">
+			 <input type="text" class="form-control" placeholder="Borrower's name" aria-label="Recipient's username" aria-describedby="button-addon2" ng-model="searchString" >
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-primary" type="button" id="button-addon2"  ng-click="searchLoansByBorrower()">Search</button>
+			  </div>
+		</div>
+		<div class="col-md-10">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.prevPage()">&laquo;</a></li>
+				<li class="page-item"
+					ng-repeat="n in [] | range: pagination.numPages"
+					ng-class="{active: n == pagination.page}"><a class="page-link"
+					href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+				<li class="page-item"><a class="page-link" href=""
+					ng-click="pagination.nextPage()">&raquo;</a></li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Borrower</th>
+					<th scope="col">Branch</th>
+					<th scope="col">Book</th>
+					<th scope="col">DateOut</th>
+					<th scope="col">DueDate</th>
+					<th scope="col">Override</th>
+					<th scope="col">ReturnDate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="bl in myloans | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{$index+1}}</td>
+					<td>{{bl.borrower.name}}</td>
+					<td>{{bl.libraryBranch.branchName}}</td>
+					<td>{{bl.book.title}}</td>
+					<td>{{bl.dateOut}}</td>
+					<td>{{bl.dueDate}}</td>
+<!-- 					<td><button type="button" class="btn btn-primary btn-sm" ng-click="updateBookLoans(bl)">Override</button></td> -->
+					<td>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#editLoansModal" ng-click="editLoansModal(bl)">Edit</button>
+					</td>
+					<td>{{bl.returnDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<form>
+			<a class="btn btn-danger" href="#/admin" role="button">Go
+				Back</a>
+		</form>
+	</div>
+	
+	<div class="modal fade" id="editLoansModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Loans</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Select a new date at lease 7 days beyond dateOut: </label> 
+							<input type="date" id="date"  ng-model="loans.dueDate" value="loans.dueDate" >
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="updateBookLoans(loans)" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

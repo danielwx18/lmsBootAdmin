@@ -1,0 +1,37 @@
+lmsApp.config(["$routeProvider", function($routeProvider){
+	return $routeProvider.when("/",{
+		redirectTo: "/home"
+	}).when("/home", {
+		templateUrl: "home.html"
+	}).when("/admin", {
+		templateUrl: "admin.html"
+	}).when("/adminservices", {
+		templateUrl: "adminservices.html"
+	}).when("/viewauthors", {
+		templateUrl: "viewauthors.html"
+	}).when("/createauthor", {
+		templateUrl: "addauthor.html"
+	}).when("/viewgenres", {
+		templateUrl: "viewgenres.html"
+	}).when("/creategenre", {
+		templateUrl: "addgenre.html"
+	}).when("/viewpublishers", {
+		templateUrl: "viewpublishers.html"
+	}).when("/createpublisher", {
+		templateUrl: "addpublisher.html"
+	}).when("/viewbranches", {
+		templateUrl: "viewbranches.html"
+	}).when("/createbranch", {
+		templateUrl: "addbranch.html"
+	}).when("/viewborrowers", {
+		templateUrl: "viewborrowers.html"
+	}).when("/createborrower", {
+		templateUrl: "addborrower.html"
+	}).when("/viewbooks", {
+		templateUrl: "viewbooks.html"
+	}).when("/createbook", {
+		templateUrl: "addbook.html"
+	}).when("/viewloans", {
+		templateUrl: "viewloans.html"
+	})
+}])

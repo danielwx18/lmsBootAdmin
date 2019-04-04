@@ -1,0 +1,25 @@
+<div ng-controller="genreController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	
+<div class="container marketing">
+
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Genre Name for new
+				Genre: </label> <input type="text" class="form-control"
+				placeholder="Enter Genre Name" ng-model="genre_name">
+			<label for="mySelect">Select Books:</label>
+			<select name="mySelect" id="mySelect"  multiple class="form-control"  
+		      ng-options="b.title for b in mybooks"
+		      ng-model="genreBooks"></select>
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-sm" ng-click="addgenre()">Submit</button>
+		<button type="button" class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+	</div>
+</div>

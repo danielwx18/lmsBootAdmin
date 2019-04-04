@@ -1,0 +1,31 @@
+<div ng-controller="publisherController">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+	</div>
+	
+<div class="container marketing">
+
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Enter Publisher Name for new
+				Publisher: </label> <input type="text" class="form-control"
+				placeholder="Enter Publisher Name" ng-model="publisherName">
+				<label for="exampleInputEmail1">Enter Publisher Address for new
+				Publisher: </label> <input type="text" class="form-control"
+				placeholder="Enter Publisher Address" ng-model="publisherAddress">
+				<label for="exampleInputEmail1">Enter Publisher Phone for new
+				Publisher: </label> <input type="text" class="form-control"
+				placeholder="Enter Publisher Phone" ng-model="publisherPhone">
+<!-- 				<label for="mySelect">Select Books:</label> -->
+<!-- 				<select name="mySelect" id="mySelect"  multiple class="form-control"   -->
+<!-- 			      ng-options="b.title for b in mybooks" -->
+<!-- 			      ng-model="pubBooks"></select> -->
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-sm" ng-click="addpublisher()">Submit</button>
+		<button type="button" class="btn btn-danger btn-sm" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+	</div>
+</div>
